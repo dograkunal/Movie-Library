@@ -1,11 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 const initialState = { data: [] };
-
-const API_DATA = {
-  key: "&api_key=d4a48e640b885612cbcb64269d234d4b",
-  baseURL: "https://api.themoviedb.org/3",
-};
 
 export const dashboardSlice = createSlice({
   name: "Dashboard",
@@ -22,11 +16,13 @@ export const dashboardSlice = createSlice({
       return state;
     },
 
-    getMoreSuccess: (state, payload) => {
-      // debugger;
+    getMoreSuccess: (state, action) => {
+      const previouslist = state.data.payload;
       return {
         ...state,
-        data: [...state.data, payload],
+        data: {
+          payload: [...previouslist, ...action.payload],
+        },
       };
     },
   },
@@ -35,21 +31,3 @@ export const dashboardSlice = createSlice({
 export const { getTaskSuccess, getTaskFailure, getMoreSuccess } =
   dashboardSlice.actions;
 export default dashboardSlice.reducer;
-
-//Temporary to check something
-export const getMoreData = createAsyncThunk(
-  "GetMoreMovies/Dashboard",
-  async (payload, thunkApi) => {
-    // debugger;
-    try {
-      const res = await axios.get(
-        `${API_DATA.baseURL}/discover/movie?&page=${payload}&sort_by=popularity.desc${API_DATA.key}`
-      );
-      if (res && res.data) {
-        thunkApi.dispatch(getMoreSuccess(res.data.results));
-      }
-    } catch (error) {
-      thunkApi.dispatch(getTaskFailure(error));
-    }
-  }
-);

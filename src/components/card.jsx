@@ -4,7 +4,10 @@ import { BsFillStarFill } from "react-icons/bs";
 function CardContainer(data) {
   // console.log(data.data);
   return (
-    <div className="CardItem">
+    <div
+      className="CardItem"
+      onClick={() => console.log("Clicked", data.data.id)}
+    >
       <img src={`${data.path}${data.data.poster_path}`} alt="Poster" />
       <div className="CardDetails">
         <p>{data.data.title}</p>
