@@ -4,7 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { getMovieDetails } from "../services";
-import Image from "../assets/spiderman.jpg";
+import DefaultNotFoundImage from "../assets/default.svg";
 import "../App.scss";
 
 function Details() {
@@ -28,6 +28,10 @@ function Details() {
     navigate(`/`, { replace: true });
   }
 
+  function DefaultImage(e) {
+    e.target.src = DefaultNotFoundImage;
+  }
+
   // const getYear = () => {};
 
   return (
@@ -44,7 +48,11 @@ function Details() {
       {details ? (
         <div className="deatilSection">
           <div className="detailImage">
-            <img src={`${img_path}${details.poster_path}`} alt="Poster" />
+            <img
+              src={`${img_path}${details.poster_path}`}
+              alt="Poster"
+              onError={DefaultImage}
+            />
           </div>
           <div className="detailDiscription">
             <div className="detailTitle">
@@ -56,7 +64,8 @@ function Details() {
             </h3>
             <div className="genresContainer">
               <b>Genres:</b>
-              {details && details.genres.map((el) => <h4>{el.name}</h4>)}
+              {details &&
+                details.genres.map((el) => <h4 key={el.name}>{el.name}</h4>)}
             </div>
             <h3>
               <b>Tagline:</b> {details.tagline}
