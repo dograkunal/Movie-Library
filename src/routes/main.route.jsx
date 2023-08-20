@@ -16,7 +16,7 @@ function MainRoutes() {
         }
       />
       <Route
-        path="/details"
+        path="/details/:id"
         element={
           <Suspense fallback={<h4>Loading...</h4>}>
             <Details />

@@ -39,11 +39,7 @@ function Dashboard() {
   return (
     <>
       <header>
-        <HeadSection
-          search={search}
-          setSearch={setSearch}
-          searchData={searchData}
-        />
+        <HeadSection search={search} setSearch={setSearch} />
       </header>
       <section>
         <div className="CardContainer">

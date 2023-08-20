@@ -99,6 +99,7 @@
     margin: 10px;
     padding: 10px;
     width: 50%;
+    color: black;
     .detailTitle {
       display: flex;
       align-items: center;
@@ -120,6 +121,16 @@
     }
     p {
       font-size: 14px;
+    }
+
+    .genresContainer {
+      display: flex;
+      width: 400px;
+      align-items: center;
+      font-weight: 400;
+      h4 {
+        margin: 0 0px 0px 5px;
+      }
     }
   }
 }

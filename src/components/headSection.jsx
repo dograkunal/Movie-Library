@@ -16,7 +16,6 @@ function headSection({ search, setSearch }) {
   const searchMovie = (e) => {
     if (e.key == "Enter") {
       if (searchData.length) {
-        // console.log("Enterrrrrr");
         dispatch(getSearchData(searchData));
       } else {
         console.log("Empty Value");

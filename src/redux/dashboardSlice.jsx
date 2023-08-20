@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { data: [] };
+const initialState = { data: [], details: [] };
 
 export const dashboardSlice = createSlice({
   name: "Dashboard",
@@ -25,9 +25,21 @@ export const dashboardSlice = createSlice({
         },
       };
     },
+
+    getDetailSuccess: (state, payload) => {
+      // debugger;
+      return {
+        ...state,
+        details: payload,
+      };
+    },
   },
 });
 
-export const { getTaskSuccess, getTaskFailure, getMoreSuccess } =
-  dashboardSlice.actions;
+export const {
+  getTaskSuccess,
+  getTaskFailure,
+  getMoreSuccess,
+  getDetailSuccess,
+} = dashboardSlice.actions;
 export default dashboardSlice.reducer;

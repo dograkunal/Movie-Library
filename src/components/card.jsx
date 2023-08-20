@@ -1,13 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import { BsFillStarFill } from "react-icons/bs";
 
 function CardContainer(data) {
-  // console.log(data.data);
+  const navigate = useNavigate();
+
+  function detailsRoute() {
+    navigate(`/details/${data.data.id}`, { replace: true });
+    console.log("Clicked", data.data);
+  }
+
   return (
-    <div
-      className="CardItem"
-      onClick={() => console.log("Clicked", data.data.id)}
-    >
+    <div className="CardItem" onClick={detailsRoute}>
       <img src={`${data.path}${data.data.poster_path}`} alt="Poster" />
       <div className="CardDetails">
         <p>{data.data.title}</p>
