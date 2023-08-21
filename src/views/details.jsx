@@ -22,7 +22,7 @@ function Details() {
       state && state.Dashboard.details && state.Dashboard.details.payload
   );
 
-  console.log(details);
+  //console.log(details);
 
   function returnHome() {
     navigate(`/`, { replace: true });

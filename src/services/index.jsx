@@ -32,7 +32,7 @@ export const getData = createAsyncThunk(
 export const getMoreData = createAsyncThunk(
   "GetMoreMovies/Dashboard",
   async (payload, thunkApi) => {
-    // debugger;
+    console.log(payload);
     try {
       const res = await axios.get(
         `${API_DATA.baseURL}/discover/movie?&page=${payload}&sort_by=popularity.desc&${API_DATA.key}`

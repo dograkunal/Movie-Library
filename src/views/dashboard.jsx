@@ -8,7 +8,7 @@ import "../App.scss";
 
 function Dashboard() {
   let img_path = "https://image.tmdb.org/t/p/w500";
-  const [page, setpage] = useState(1);
+  const [page, setpage] = useState(2);
   const [search, setSearch] = useState("");
   const observer = useRef();
   const dispatch = useDispatch();
@@ -18,8 +18,8 @@ function Dashboard() {
   const searchData = search.trim();
 
   useEffect(() => {
-    dispatch(getData(page));
-  }, [dispatch, page]);
+    dispatch(getData(1));
+  }, []);
 
   const lastItemRef = (node) => {
     if (searchData.length) return;
