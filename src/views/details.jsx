@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { getMovieDetails } from "../services";
 import DefaultNotFoundImage from "../assets/default.svg";
+import { dateBuilder } from "../components/common";
 import "../App.scss";
 
 function Details() {
@@ -60,7 +61,7 @@ function Details() {
               <h1>({details.vote_average})</h1>
             </div>
             <h3>
-              <b>Release Date:</b> {details.release_date}
+              <b>Release Date:</b> {dateBuilder(new Date(details.release_date))}
             </h3>
             <div className="genresContainer">
               <b>Genres:</b>

@@ -42,6 +42,7 @@ function Dashboard() {
         <HeadSection search={search} setSearch={setSearch} />
       </header>
       <section>
+        <div>Filters Div</div>
         <div className="CardContainer">
           {data &&
             data.map((el, index) => (
