@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { data: [], details: [] };
+const initialState = { data: [], details: [], filters: [] };
 
 export const dashboardSlice = createSlice({
   name: "Dashboard",

@@ -3,7 +3,7 @@ import HeadSection from "../components/headSection";
 import CardContainer from "../components/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getData, getMoreData } from "../services/index";
-
+import Filters from "../components/Filters/filters";
 import "../App.scss";
 
 function Dashboard() {
@@ -42,20 +42,24 @@ function Dashboard() {
         <HeadSection search={search} setSearch={setSearch} />
       </header>
       <section>
-        <div>Filters Div</div>
-        <div className="CardContainer">
-          {data &&
-            data.map((el, index) => (
-              <div key={el.id}>
-                {index === data.length - 1 ? (
-                  <section ref={lastItemRef}>
-                    {!searchData && <h1>LOADING.....</h1>}
-                  </section>
-                ) : (
-                  <CardContainer data={el} path={img_path} key={index} />
-                )}
-              </div>
-            ))}
+        <div className="mainContainer">
+          <div className="filterContainer">
+            <Filters />
+          </div>
+          <div className="CardContainer">
+            {data &&
+              data.map((el, index) => (
+                <React.Fragment key={el.id}>
+                  {index === data.length - 1 ? (
+                    <section ref={lastItemRef}>
+                      {!searchData && <h1>LOADING.....</h1>}
+                    </section>
+                  ) : (
+                    <CardContainer data={el} path={img_path} key={index} />
+                  )}
+                </React.Fragment>
+              ))}
+          </div>
         </div>
       </section>
     </>

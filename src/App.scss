@@ -1,7 +1,32 @@
+/* **********M A I N  C O N T A I N E R********** */
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  // max-width: 1500px;
+}
+
+/* **********F I L T E R  C O N T A I N E R */
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 60px 15px;
+  text-align: center;
+  .sortFilter {
+    padding: 20px 0px;
+    border-bottom: 1px solid #b3b3b3;
+  }
+  .genresFilter {
+    padding: 20px 0px;
+    border-bottom: 1px solid #b3b3b3;
+  }
+}
+
+/* **********C A R D  C O N T A I N E R */
 .CardContainer {
   display: flex;
   margin: 40px 15px;
   flex-wrap: wrap;
+  border-left: 1px solid #666666d0;
   // width: 100%;
   //   justify-content: center;
   .CardItem {
@@ -40,6 +65,8 @@
     }
   }
 }
+
+/* **********H E A D  S E C T I O N********** */
 
 .headSection {
   display: flex;
@@ -80,6 +107,7 @@
   }
 }
 
+/* **********D E T A I L  S E C T I O N*********** */
 .deatilSection {
   display: flex;
   .detailImage {
