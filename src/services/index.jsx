@@ -79,3 +79,33 @@ export const getMovieDetails = createAsyncThunk(
     }
   }
 );
+
+export const FiltersSubmit = async (data, dis) => {
+  const url = new URLSearchParams(`${API_DATA.baseURL}/discover/movie?&page=1`);
+  // debugger;
+  if (data.sort) {
+    url.append("sort_by", data.sort);
+  }
+  if (data.genres) {
+    url.append("with_genres", data.genres);
+  }
+  url.append("api_key", "d4a48e640b885612cbcb64269d234d4b");
+  const newURL = decodeURIComponent(url.toString());
+
+  dis(getFilteredMovies(decodeURIComponent(newURL.toString())));
+};
+
+export const getFilteredMovies = createAsyncThunk(
+  "GetFilteredMovies/Dashboard",
+  async (newURL, thunkApi) => {
+    try {
+      debugger;
+      const res = await axios.get(newURL);
+      if (res && res.data) {
+        thunkApi.dispatch(getTaskSuccess(res.data.results));
+      }
+    } catch (error) {
+      thunkApi.dispatch(getTaskFailure(error));
+    }
+  }
+);

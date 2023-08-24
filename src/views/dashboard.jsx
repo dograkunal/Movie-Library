@@ -3,22 +3,22 @@ import HeadSection from "../components/headSection";
 import CardContainer from "../components/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getData, getMoreData } from "../services/index";
+import { pageIncrease } from "../redux/dashboardSlice";
 import Filters from "../components/Filters/filters";
 import "../App.scss";
 
 function Dashboard() {
   let img_path = "https://image.tmdb.org/t/p/w500";
-  const [page, setpage] = useState(2);
   const [search, setSearch] = useState("");
   const observer = useRef();
   const dispatch = useDispatch();
-  const data = useSelector(
-    (state) => state && state.Dashboard.data && state.Dashboard.data.payload
-  );
+  const data = useSelector((state) => state && state.Dashboard?.data?.payload);
+  const page = useSelector((state) => state && state.Dashboard?.page);
+
   const searchData = search.trim();
 
   useEffect(() => {
-    dispatch(getData(1));
+    dispatch(getData());
   }, []);
 
   const lastItemRef = (node) => {
@@ -27,7 +27,8 @@ function Dashboard() {
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         dispatch(getMoreData(page));
-        setpage(page + 1);
+        dispatch(pageIncrease());
+        // setpage(page + 1);
       }
     });
     if (node) observer.current.observe(node);

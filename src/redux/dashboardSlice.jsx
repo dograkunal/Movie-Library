@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { data: [], details: [], filters: [] };
+const initialState = { data: [], details: [], filters: [], page: 2 };
 
 export const dashboardSlice = createSlice({
   name: "Dashboard",
@@ -14,6 +14,20 @@ export const dashboardSlice = createSlice({
 
     getTaskFailure: (state) => {
       return state;
+    },
+
+    pageIncrease: (state) => {
+      return {
+        ...state,
+        page: state.page + 1,
+      };
+    },
+
+    pageDecrease: (state) => {
+      return {
+        ...state,
+        page: pageNo - 1,
+      };
     },
 
     getMoreSuccess: (state, action) => {
@@ -33,13 +47,28 @@ export const dashboardSlice = createSlice({
         details: payload,
       };
     },
+
+    getFilterSuccess: (state, payload) => {
+      return {
+        ...state,
+        filters: payload,
+      };
+    },
+
+    getFilterFailure: (state) => {
+      return state;
+    },
   },
 });
 
 export const {
   getTaskSuccess,
   getTaskFailure,
+  pageIncrease,
+  pageDecrease,
   getMoreSuccess,
   getDetailSuccess,
+  getFilterSuccess,
+  getFilterFailure,
 } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

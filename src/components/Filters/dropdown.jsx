@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getFilterSuccess } from "../../redux/dashboardSlice";
 import "../../App.scss";
 
 function dropdown() {
-  const [value, setValue] = useState("popularity.desc");
+  // const [value, setValue] = useState("popularity.desc");
+  const dispatch = useDispatch();
   const handleChange = (e) => {
-    setValue(e.target.value);
-    console.log(e.target.value);
+    const value = e.target.value;
+    dispatch(getFilterSuccess({ sort: value }));
+    console.log(value);
   };
 
   const sortOptions = [
@@ -17,16 +21,13 @@ function dropdown() {
 
   return (
     <>
-      <label>
-        Order:
-        <select onChange={handleChange}>
-          {sortOptions.map((el, index) => (
-            <option value={el.value} key={index}>
-              {el.label}
-            </option>
-          ))}
-        </select>
-      </label>
+      <select onChange={handleChange} className="sortSelector">
+        {sortOptions.map((el, index) => (
+          <option value={el.value} key={index}>
+            {el.label}
+          </option>
+        ))}
+      </select>
     </>
   );
 }
