@@ -48,10 +48,30 @@ export const dashboardSlice = createSlice({
       };
     },
 
-    getFilterSuccess: (state, payload) => {
+    getFilterSuccess: (state, action) => {
+      const previousFilter = state.filters;
       return {
         ...state,
-        filters: payload,
+        filters: [...previousFilter, action.payload],
+      };
+    },
+
+    getFilterSuccess: (state, action) => {
+      const previousFilter = state.filters;
+      return {
+        ...state,
+        filters: [...previousFilter, action.payload],
+      };
+    },
+
+    clearFilter: (state, action) => {
+      const value = action.payload;
+      debugger;
+      return {
+        ...state,
+        filters: [
+          ...state.filters.filter((el) => Object.keys(el)[0] !== value),
+        ],
       };
     },
 
@@ -70,5 +90,6 @@ export const {
   getDetailSuccess,
   getFilterSuccess,
   getFilterFailure,
+  clearFilter,
 } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

@@ -1,6 +1,7 @@
 import React from "react";
 import Dropdown from "./dropdown";
 import Genres from "./genres";
+import Language from "./Language";
 import { useDispatch, useSelector } from "react-redux";
 import { FiltersSubmit } from "../../services";
 import "../../App.scss";
@@ -20,6 +21,10 @@ function Filters() {
       <div className="genresFilter">
         <div className="filterHead">Select Genres</div>
         <Genres />
+      </div>
+      <div className="languageFilter">
+        <div className="filterHead">Select Original Language</div>
+        <Language />
       </div>
       <div>
         <button

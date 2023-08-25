@@ -39,12 +39,30 @@
       }
     }
   }
+
+  .languageFilter {
+    padding: 20px 0px;
+    border-bottom: 1px solid #b3b3b3;
+    .languageWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 20px;
+      label {
+        padding: 10px 0;
+      }
+    }
+  }
+
   .filterSubmit {
     margin: 10px auto;
     padding: 10px 20px;
     background: transparent;
     border-radius: 10px;
     border: 3px solid rgba(211, 141, 11, 0.925);
+  }
+  .submitBtn {
+    width: 100%;
   }
 }
 
