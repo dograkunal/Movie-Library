@@ -9,8 +9,9 @@ function genres() {
 
   const handleChange = (e) => {
     setSelected(e.target.value);
-    const { name, value } = e.target;
-    dispatch(getFilterSuccess({ [name]: value }));
+    const { value } = e.target;
+    dispatch(clearFilter("genres"));
+    dispatch(getFilterSuccess({ ["genres"]: value }));
     console.log(e.target.value, "genres");
   };
 
@@ -25,7 +26,6 @@ function genres() {
         <input
           type="radio"
           value="16"
-          name="genres"
           checked={selected === "16"}
           onChange={handleChange}
         />
@@ -35,7 +35,6 @@ function genres() {
         <input
           type="radio"
           value="53"
-          name="genres"
           checked={selected === "53"}
           onChange={handleChange}
         />
@@ -45,7 +44,6 @@ function genres() {
         <input
           type="radio"
           value="28"
-          name="genres"
           checked={selected === "28"}
           onChange={handleChange}
         />
@@ -55,7 +53,6 @@ function genres() {
         <input
           type="radio"
           value="35"
-          name="genres"
           checked={selected === "35"}
           onChange={handleChange}
         />
@@ -65,7 +62,6 @@ function genres() {
         <input
           type="radio"
           value="878"
-          name="genres"
           checked={selected === "878"}
           onChange={handleChange}
         />
@@ -75,7 +71,6 @@ function genres() {
         <input
           type="radio"
           value="27"
-          name="genres"
           checked={selected === "27"}
           onChange={handleChange}
         />

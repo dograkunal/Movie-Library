@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getFilterSuccess } from "../../redux/dashboardSlice";
+import { getFilterSuccess, clearFilter } from "../../redux/dashboardSlice";
 import "../../App.scss";
 
 function dropdown() {
   // const [value, setValue] = useState("popularity.desc");
   const dispatch = useDispatch();
   const handleChange = (e) => {
-    const value = e.target.value;
-    dispatch(getFilterSuccess({ sort: value }));
-    console.log(value);
+    const { value } = e.target;
+    dispatch(clearFilter("sorting"));
+    dispatch(getFilterSuccess({ ["sorting"]: value }));
+    // console.log(value);
   };
 
   const sortOptions = [

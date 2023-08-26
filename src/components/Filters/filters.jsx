@@ -8,9 +8,8 @@ import "../../App.scss";
 
 function Filters() {
   const dispatch = useDispatch();
-  const filtersData = useSelector(
-    (state) => state && state.Dashboard?.filters.payload
-  );
+  const filtersData = useSelector((state) => state && state.Dashboard?.filters);
+  // console.log(filtersData, "filters");
 
   return (
     <>

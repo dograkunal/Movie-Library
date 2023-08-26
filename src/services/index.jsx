@@ -82,13 +82,18 @@ export const getMovieDetails = createAsyncThunk(
 
 export const FiltersSubmit = async (data, dis) => {
   const url = new URLSearchParams(`${API_DATA.baseURL}/discover/movie?&page=1`);
-  // debugger;
-  if (data.sort) {
-    url.append("sort_by", data.sort);
-  }
-  if (data.genres) {
-    url.append("with_genres", data.genres);
-  }
+  console.log(data, "Data");
+  data.forEach((el) => {
+    if (el.sorting) {
+      url.append("sort_by", el.sort);
+    }
+    if (el.genres) {
+      url.append("with_genres", el.genres);
+    }
+    if (el.language) {
+      url.append("with_original_language", el.language);
+    }
+  });
   url.append("api_key", "d4a48e640b885612cbcb64269d234d4b");
   const newURL = decodeURIComponent(url.toString());
 
@@ -98,8 +103,8 @@ export const FiltersSubmit = async (data, dis) => {
 export const getFilteredMovies = createAsyncThunk(
   "GetFilteredMovies/Dashboard",
   async (newURL, thunkApi) => {
+    console.log(newURL, "New URL");
     try {
-      debugger;
       const res = await axios.get(newURL);
       if (res && res.data) {
         thunkApi.dispatch(getTaskSuccess(res.data.results));

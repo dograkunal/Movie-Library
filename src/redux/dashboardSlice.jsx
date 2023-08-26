@@ -50,14 +50,7 @@ export const dashboardSlice = createSlice({
 
     getFilterSuccess: (state, action) => {
       const previousFilter = state.filters;
-      return {
-        ...state,
-        filters: [...previousFilter, action.payload],
-      };
-    },
-
-    getFilterSuccess: (state, action) => {
-      const previousFilter = state.filters;
+      console.log(action.payload, "action");
       return {
         ...state,
         filters: [...previousFilter, action.payload],
@@ -66,7 +59,7 @@ export const dashboardSlice = createSlice({
 
     clearFilter: (state, action) => {
       const value = action.payload;
-      debugger;
+      // debugger;
       return {
         ...state,
         filters: [
