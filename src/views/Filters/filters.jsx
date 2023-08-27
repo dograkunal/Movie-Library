@@ -9,6 +9,8 @@ import "../../App.scss";
 function Filters() {
   const dispatch = useDispatch();
   const filtersData = useSelector((state) => state && state.Dashboard?.filters);
+  // eslint-disable-next-line no-unused-vars
+  const store = useSelector((state) => state);
   // console.log(filtersData, "filters");
 
   return (
@@ -28,7 +30,7 @@ function Filters() {
       <div>
         <button
           className="filterSubmit"
-          onClick={() => FiltersSubmit(filtersData, dispatch)}
+          onClick={() => FiltersSubmit(filtersData, dispatch, store)}
         >
           Submit
         </button>

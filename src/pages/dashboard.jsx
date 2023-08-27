@@ -4,7 +4,7 @@ import CardContainer from "../components/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getData, getMoreData } from "../services/index";
 import { pageIncrease } from "../redux/dashboardSlice";
-import Filters from "../components/Filters/filters";
+import Filters from "../views/Filters/filters";
 import "../App.scss";
 
 function Dashboard() {

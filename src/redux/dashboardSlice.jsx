@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { data: [], details: [], filters: [], page: 2 };
+const initialState = { data: [], details: [], filters: {}, page: 2 };
 
 export const dashboardSlice = createSlice({
   name: "Dashboard",
@@ -49,22 +49,24 @@ export const dashboardSlice = createSlice({
     },
 
     getFilterSuccess: (state, action) => {
-      const previousFilter = state.filters;
-      console.log(action.payload, "action");
+      const { payload: { key, value } } = action;
       return {
         ...state,
-        filters: [...previousFilter, action.payload],
+        filters: { ...state.filters, [key]: value },
       };
     },
 
     clearFilter: (state, action) => {
-      const value = action.payload;
+      // const value = action.payload;
+      /**
+       * const {key} = action.payload;
+       * const filtersObj = state.filters;
+       * delete filtersObj[key];
+       */
       // debugger;
       return {
         ...state,
-        filters: [
-          ...state.filters.filter((el) => Object.keys(el)[0] !== value),
-        ],
+        // filters: {...filtersObj},
       };
     },
 

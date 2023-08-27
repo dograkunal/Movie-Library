@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getFilterSuccess, clearFilter } from "../../redux/dashboardSlice";
+import { getFilterSuccess } from "../../redux/dashboardSlice";
 import "../../App.scss";
 
 function dropdown() {
@@ -8,9 +8,7 @@ function dropdown() {
   const dispatch = useDispatch();
   const handleChange = (e) => {
     const { value } = e.target;
-    dispatch(clearFilter("sorting"));
-    dispatch(getFilterSuccess({ ["sorting"]: value }));
-    // console.log(value);
+    dispatch(getFilterSuccess({ key: 'sort_by', value }));
   };
 
   const sortOptions = [

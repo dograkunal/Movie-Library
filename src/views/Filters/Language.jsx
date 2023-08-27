@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import * as React from 'react';
 import { useDispatch } from "react-redux";
-import { getFilterSuccess, clearFilter } from "../../redux/dashboardSlice";
+import { getFilterSuccess, } from "../../redux/dashboardSlice";
 
 function Language() {
   const [selected, setSelected] = useState("");
@@ -8,10 +10,8 @@ function Language() {
 
   const handleChange = (e) => {
     setSelected(e.target.value);
-    const { name, value } = e.target;
-    dispatch(clearFilter("language"));
-    dispatch(getFilterSuccess({ [name]: value }));
-    console.log(e.target.value, "language");
+    const { value } = e.target;
+    dispatch(getFilterSuccess({ key: 'with_original_language', value }));
   };
 
   return (
