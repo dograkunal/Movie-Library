@@ -7,7 +7,7 @@ function CardContainer(data) {
   const navigate = useNavigate();
 
   function detailsRoute() {
-    navigate(`/details/${data.data.id}`, { replace: true });
+    navigate(`/details/${data.data.id}`);
     console.log("Clicked", data.data);
   }
 

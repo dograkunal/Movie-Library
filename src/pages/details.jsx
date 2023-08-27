@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { getData } from "../services";
 import { AiFillHome } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
@@ -19,11 +18,8 @@ function Details() {
   }, []);
 
   const details = useSelector(
-    (state) =>
-      state && state.Dashboard.details && state.Dashboard.details.payload
+    (state) => state && state.Dashboard?.details?.payload
   );
-
-  //console.log(details);
 
   function returnHome() {
     navigate(`/`, { replace: true });
@@ -32,8 +28,6 @@ function Details() {
   function DefaultImage(e) {
     e.target.src = DefaultNotFoundImage;
   }
-
-  // const getYear = () => {};
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { data: [], details: [], filters: [], page: 2 };
+const initialState = { data: [], details: [], filters: {}, page: 1 };
 
 export const dashboardSlice = createSlice({
   name: "Dashboard",
@@ -23,13 +23,6 @@ export const dashboardSlice = createSlice({
       };
     },
 
-    pageDecrease: (state) => {
-      return {
-        ...state,
-        page: pageNo - 1,
-      };
-    },
-
     getMoreSuccess: (state, action) => {
       const previouslist = state.data.payload;
       return {
@@ -49,22 +42,24 @@ export const dashboardSlice = createSlice({
     },
 
     getFilterSuccess: (state, action) => {
-      const previousFilter = state.filters;
-      console.log(action.payload, "action");
+      const {
+        payload: { key, value },
+      } = action;
+      // console.log(action.payload, "action");
       return {
         ...state,
-        filters: [...previousFilter, action.payload],
+        filters: { ...state.filters, [key]: value },
       };
     },
 
     clearFilter: (state, action) => {
-      const value = action.payload;
+      // const value = action.payload;
       // debugger;
       return {
         ...state,
-        filters: [
-          ...state.filters.filter((el) => Object.keys(el)[0] !== value),
-        ],
+        // filters: [
+        //   ...state.filters.filter((el) => Object.keys(el)[0] !== value),
+        // ],
       };
     },
 
@@ -78,7 +73,6 @@ export const {
   getTaskSuccess,
   getTaskFailure,
   pageIncrease,
-  pageDecrease,
   getMoreSuccess,
   getDetailSuccess,
   getFilterSuccess,

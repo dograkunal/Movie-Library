@@ -10,9 +10,8 @@ function genres() {
   const handleChange = (e) => {
     setSelected(e.target.value);
     const { value } = e.target;
-    dispatch(clearFilter("genres"));
-    dispatch(getFilterSuccess({ ["genres"]: value }));
-    console.log(e.target.value, "genres");
+    dispatch(getFilterSuccess({ key: "with_genres", value }));
+    // console.log(e.target.value, "genres");
   };
 
   const handleClear = () => {

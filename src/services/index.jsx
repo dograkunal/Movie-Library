@@ -12,14 +12,28 @@ const API_DATA = {
   baseURL: "https://api.themoviedb.org/3",
 };
 
+const getQueryParamsWithUrl = (store) => {
+  const url = new URLSearchParams(`${API_DATA.baseURL}/discover/movie?`);
+  const { Dashboard } = store;
+  const { page, filters } = Dashboard;
+  url.append("page", page);
+  url.append("api_key", "d4a48e640b885612cbcb64269d234d4b");
+  if (Object.keys(filters).length) {
+    Object.keys(filters).forEach((key) => {
+      url.append(key, filters[key]);
+    });
+  }
+  return decodeURIComponent(url.toString());
+};
+
 export const getData = createAsyncThunk(
   "GetMovies/Dashboard",
   async (payload, thunkApi) => {
     // debugger;
     try {
-      const res = await axios.get(
-        `${API_DATA.baseURL}/discover/movie?&page=${payload}&sort_by=popularity.desc&${API_DATA.key}`
-      );
+      const getUpdatedUrl = getQueryParamsWithUrl(thunkApi.getState());
+      const res = await axios.get(getUpdatedUrl);
+      // `${API_DATA.baseURL}/discover/movie?&page=${payload}&sort_by=popularity.desc&${API_DATA.key}`
       if (res && res.data) {
         thunkApi.dispatch(getTaskSuccess(res.data.results));
       }
@@ -34,9 +48,9 @@ export const getMoreData = createAsyncThunk(
   async (payload, thunkApi) => {
     console.log(payload);
     try {
-      const res = await axios.get(
-        `${API_DATA.baseURL}/discover/movie?&page=${payload}&sort_by=popularity.desc&${API_DATA.key}`
-      );
+      const getUpdatedUrl = getQueryParamsWithUrl(thunkApi.getState());
+      const res = await axios.get(getUpdatedUrl);
+      // `${API_DATA.baseURL}/discover/movie?&page=${payload}&sort_by=popularity.desc&${API_DATA.key}`
       if (res && res.data) {
         thunkApi.dispatch(getMoreSuccess(res.data.results));
       }
@@ -80,22 +94,9 @@ export const getMovieDetails = createAsyncThunk(
   }
 );
 
-export const FiltersSubmit = async (data, dis) => {
-  const url = new URLSearchParams(`${API_DATA.baseURL}/discover/movie?&page=1`);
-  console.log(data, "Data");
-  data.forEach((el) => {
-    if (el.sorting) {
-      url.append("sort_by", el.sort);
-    }
-    if (el.genres) {
-      url.append("with_genres", el.genres);
-    }
-    if (el.language) {
-      url.append("with_original_language", el.language);
-    }
-  });
-  url.append("api_key", "d4a48e640b885612cbcb64269d234d4b");
-  const newURL = decodeURIComponent(url.toString());
+export const FiltersSubmit = async (data, dis, store) => {
+  const getUpdatedUrl = getQueryParamsWithUrl(store);
+  const newURL = getUpdatedUrl;
 
   dis(getFilteredMovies(decodeURIComponent(newURL.toString())));
 };

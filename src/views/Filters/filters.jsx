@@ -10,6 +10,7 @@ function Filters() {
   const dispatch = useDispatch();
   const filtersData = useSelector((state) => state && state.Dashboard?.filters);
   // console.log(filtersData, "filters");
+  const store = useSelector((state) => state);
 
   return (
     <>
@@ -28,7 +29,7 @@ function Filters() {
       <div>
         <button
           className="filterSubmit"
-          onClick={() => FiltersSubmit(filtersData, dispatch)}
+          onClick={() => FiltersSubmit(filtersData, dispatch, store)}
         >
           Submit
         </button>

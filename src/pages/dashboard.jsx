@@ -4,7 +4,7 @@ import CardContainer from "../components/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getData, getMoreData } from "../services/index";
 import { pageIncrease } from "../redux/dashboardSlice";
-import Filters from "../components/Filters/filters";
+import Filters from "../views/Filters/filters";
 import "../App.scss";
 
 function Dashboard() {
@@ -13,7 +13,6 @@ function Dashboard() {
   const observer = useRef();
   const dispatch = useDispatch();
   const data = useSelector((state) => state && state.Dashboard?.data?.payload);
-  const page = useSelector((state) => state && state.Dashboard?.page);
 
   const searchData = search.trim();
 
@@ -26,8 +25,8 @@ function Dashboard() {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        dispatch(getMoreData(page));
         dispatch(pageIncrease());
+        dispatch(getMoreData());
         // setpage(page + 1);
       }
     });

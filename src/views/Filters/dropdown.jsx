@@ -8,8 +8,7 @@ function dropdown() {
   const dispatch = useDispatch();
   const handleChange = (e) => {
     const { value } = e.target;
-    dispatch(clearFilter("sorting"));
-    dispatch(getFilterSuccess({ ["sorting"]: value }));
+    dispatch(getFilterSuccess({ key: "sort_by", value }));
     // console.log(value);
   };
 
