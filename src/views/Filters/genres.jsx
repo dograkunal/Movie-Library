@@ -1,22 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { getFilterSuccess, clearFilter } from "../../redux/dashboardSlice";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getFilterSuccess } from "../../redux/dashboardSlice";
 
 function genres() {
-  const [selected, setSelected] = useState("");
   const dispatch = useDispatch();
+  const selected = useSelector(
+    (state) => state && state.Dashboard?.filters?.with_genres
+  );
+  console.log(selected, "genres");
 
   const handleChange = (e) => {
-    setSelected(e.target.value);
     const { value } = e.target;
     dispatch(getFilterSuccess({ key: "with_genres", value }));
     // console.log(e.target.value, "genres");
-  };
-
-  const handleClear = () => {
-    dispatch(clearFilter("genres"));
-    setSelected("");
   };
 
   return (
@@ -74,11 +70,6 @@ function genres() {
           onChange={handleChange}
         />
         <span>Horror</span>
-      </div>
-      <div className="submitBtn">
-        <button onClick={handleClear} className="filterSubmit">
-          Clear Genres
-        </button>
       </div>
     </div>
   );

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getFilterSuccess, clearFilter } from "../../redux/dashboardSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getFilterSuccess } from "../../redux/dashboardSlice";
 
 function Language() {
-  const [selected, setSelected] = useState("");
   const dispatch = useDispatch();
 
+  const selected = useSelector(
+    (state) => state && state.Dashboard?.filters?.with_original_language
+  );
+  console.log(selected, "language");
+
   const handleChange = (e) => {
-    setSelected(e.target.value);
     const { value } = e.target;
     dispatch(getFilterSuccess({ key: "with_original_language", value }));
     // console.log(e.target.value, "language");

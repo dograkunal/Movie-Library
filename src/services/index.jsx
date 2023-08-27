@@ -65,6 +65,8 @@ export const getSearchData = createAsyncThunk(
   async (payload, thunkApi) => {
     // debugger;
     try {
+      // const getUpdatedUrl = getQueryParamsWithUrl(thunkApi.getState());
+      // const res = await axios.get(getUpdatedUrl);
       const res = await axios.get(
         `${API_DATA.baseURL}/search/movie?${API_DATA.key}&query=${payload}`
       );

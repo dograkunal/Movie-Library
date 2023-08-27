@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { data: [], details: [], filters: {}, page: 1 };
+const initialState = {
+  data: [],
+  details: [],
+  filters: {},
+  search: "",
+  page: 1,
+};
 
 export const dashboardSlice = createSlice({
   name: "Dashboard",
@@ -33,6 +39,14 @@ export const dashboardSlice = createSlice({
       };
     },
 
+    getSearchSuccess: (state, action) => {
+      //debugger;
+      return {
+        ...state,
+        search: action.payload,
+      };
+    },
+
     getDetailSuccess: (state, payload) => {
       // debugger;
       return {
@@ -53,13 +67,9 @@ export const dashboardSlice = createSlice({
     },
 
     clearFilter: (state, action) => {
-      // const value = action.payload;
-      // debugger;
       return {
         ...state,
-        // filters: [
-        //   ...state.filters.filter((el) => Object.keys(el)[0] !== value),
-        // ],
+        filters: {},
       };
     },
 
@@ -78,5 +88,6 @@ export const {
   getFilterSuccess,
   getFilterFailure,
   clearFilter,
+  getSearchSuccess,
 } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

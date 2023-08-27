@@ -1,16 +1,16 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { getSearchData } from "../services";
-import { getData } from "../services";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchData, getData } from "../services";
+import { getSearchSuccess } from "../redux/dashboardSlice";
 import { AiFillHome } from "react-icons/ai";
 import "../App.scss";
 
-function headSection({ search, setSearch }) {
-  const searchData = search.trim();
+function headSection() {
   const dispatch = useDispatch();
+  const searchData = useSelector((state) => state && state.Dashboard?.search);
 
   const handleChange = (e) => {
-    setSearch(e.target.value);
+    dispatch(getSearchSuccess(e.target.value));
   };
 
   const searchMovie = (e) => {
@@ -25,8 +25,8 @@ function headSection({ search, setSearch }) {
   };
 
   function returnHome() {
-    dispatch(getData(1));
-    setSearch("");
+    dispatch(getData());
+    dispatch(getSearchSuccess(""));
   }
 
   return (
@@ -37,7 +37,7 @@ function headSection({ search, setSearch }) {
         <input
           type="text"
           placeholder="Search ..."
-          value={search}
+          value={searchData}
           onChange={handleChange}
           onKeyDown={searchMovie}
         />

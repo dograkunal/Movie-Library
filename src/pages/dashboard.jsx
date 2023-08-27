@@ -9,12 +9,12 @@ import "../App.scss";
 
 function Dashboard() {
   let img_path = "https://image.tmdb.org/t/p/w500";
-  const [search, setSearch] = useState("");
   const observer = useRef();
   const dispatch = useDispatch();
   const data = useSelector((state) => state && state.Dashboard?.data?.payload);
+  const searchData = useSelector((state) => state && state.Dashboard?.search);
 
-  const searchData = search.trim();
+  //const searchData = search.trim();
 
   useEffect(() => {
     dispatch(getData());
@@ -39,7 +39,7 @@ function Dashboard() {
   return (
     <>
       <header>
-        <HeadSection search={search} setSearch={setSearch} />
+        <HeadSection />
       </header>
       <section>
         <div className="mainContainer">
