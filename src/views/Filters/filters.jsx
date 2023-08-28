@@ -5,9 +5,10 @@ import Language from "./Language";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilter } from "../../redux/dashboardSlice";
 import { FiltersSubmit } from "../../services";
+import { HiBars3 } from "react-icons/hi2";
 import "../../App.scss";
 
-function Filters() {
+function Filters({ nav, setNav }) {
   const dispatch = useDispatch();
   const filtersData = useSelector((state) => state && state.Dashboard?.filters);
   // console.log(filtersData, "filters");
@@ -19,6 +20,14 @@ function Filters() {
 
   return (
     <>
+      <div className="filterBlock">
+        <button
+          className={`filterMenu ${nav ? "filterMenuOpen" : ""}`}
+          onClick={() => setNav(false)}
+        >
+          <HiBars3 color="orange" size="30" />
+        </button>
+      </div>
       <div className="sortFilter">
         <div className="filterHead">Sort</div>
         <Dropdown />

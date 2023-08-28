@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchData, getData } from "../services";
 import { getSearchSuccess } from "../redux/dashboardSlice";
 import { AiFillHome } from "react-icons/ai";
+import { HiBars3 } from "react-icons/hi2";
 import "../App.scss";
 
-function headSection() {
+function headSection({ setNav }) {
   const dispatch = useDispatch();
   const searchData = useSelector((state) => state && state.Dashboard?.search);
 
@@ -31,6 +32,11 @@ function headSection() {
 
   return (
     <div className="headSection">
+      <div className="filterBlock">
+        <button className="filterMenu" onClick={() => setNav(true)}>
+          <HiBars3 color="orange" size="30" />
+        </button>
+      </div>
       <h1>Movie Library</h1>
       <div className="searchSection">
         <label>Search Movie</label>

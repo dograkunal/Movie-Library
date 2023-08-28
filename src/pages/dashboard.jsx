@@ -10,6 +10,7 @@ import "../App.scss";
 function Dashboard() {
   let img_path = "https://image.tmdb.org/t/p/w500";
   const observer = useRef();
+  const [nav, setNav] = useState(false);
   const dispatch = useDispatch();
   const data = useSelector((state) => state && state.Dashboard?.data?.payload);
   const searchData = useSelector((state) => state && state.Dashboard?.search);
@@ -33,18 +34,18 @@ function Dashboard() {
     if (node) observer.current.observe(node);
   };
 
-  // console.log(data);
+  console.log(nav);
   // console.log(page, "Page number");
 
   return (
     <>
       <header>
-        <HeadSection />
+        <HeadSection nav={nav} setNav={setNav} />
       </header>
       <section>
         <div className="mainContainer">
-          <div className="filterContainer">
-            <Filters />
+          <div className={`filterContainer ${nav ? `mobNav` : ""}`}>
+            <Filters nav={nav} setNav={setNav} />
           </div>
           <div className="CardContainer">
             {data &&

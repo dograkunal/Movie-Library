@@ -5,7 +5,7 @@
   // max-width: 1500px;
 }
 
-/* **********F I L T E R  C O N T A I N E R */
+/* **********F I L T E R  C O N T A I N E R********** */
 .filterContainer {
   display: flex;
   flex-direction: column;
@@ -132,7 +132,6 @@
 }
 
 /* **********H E A D  S E C T I O N********** */
-
 .headSection {
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -238,8 +237,7 @@
   padding: 10px 15px;
 }
 
-/* **********S C R O L L B A R ********** */
-
+/* **********M A I N  S C R O L L B A R ********** */
 body::-webkit-scrollbar {
   width: 8px;
 }
@@ -252,4 +250,163 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
   border-radius: 8px;
+}
+
+/*********** B R E A K P O I N T S ***********/
+@media screen and (max-width: 1550px) {
+  .mainContainer {
+    grid-template-columns: 1fr 6fr;
+  }
+  .filterContainer {
+    margin: 60px 11px;
+  }
+
+  .CardContainer .CardItem {
+    max-width: 180px;
+    img {
+      width: 180px;
+    }
+  }
+
+  .headSection .searchSection input {
+    padding: 8px 10px;
+    margin: 0px 18px;
+  }
+}
+
+@media screen and (max-width: 1450px) {
+  .mainContainer {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .CardContainer {
+    margin: 40px 12px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .mainContainer {
+    grid-template-columns: 1fr 4fr;
+  }
+  .filterContainer {
+    margin: 60px 10px;
+  }
+
+  .CardContainer {
+    margin: 40px 12px;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .mainContainer {
+    grid-template-columns: 1fr 3fr;
+  }
+  .CardContainer {
+    justify-content: space-around;
+  }
+
+  .filterContainer {
+    .filterHead {
+      font-size: 14px;
+    }
+
+    .genresFilter .genresWrapper {
+      padding: 0px 12px;
+      label {
+        font-size: 14px;
+      }
+    }
+    .languageFilter .languageWrapper {
+      padding: 0px 12px;
+      label {
+        font-size: 14px;
+      }
+    }
+  }
+  .headSection {
+    .searchSection {
+      input {
+        font-size: 12px;
+        padding: 3px 3px;
+        margin: 0px 6px;
+      }
+      label {
+        font-size: 14px;
+      }
+    }
+    .homeBtn {
+      margin: 0px 8px;
+    }
+    h1 {
+      font-size: 27px;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .mainContainer {
+    display: flex;
+  }
+  .CardContainer {
+    border: none;
+  }
+  .headSection {
+    position: relative;
+    .searchSection label {
+      display: none;
+    }
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .filterContainer {
+    display: flex;
+    background-color: rgba(243, 238, 217, 0.952);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease-in;
+    align-items: stretch;
+    pointer-events: none;
+    visibility: hidden;
+    .sortFilter {
+      padding: 10px 0px;
+    }
+    .sortFilter {
+      padding: 10px 0px;
+    }
+  }
+  .filterBlock {
+    display: flex !important;
+  }
+}
+
+/* **********M O B I L E********** */
+
+.mobNav {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.filterMenu {
+  background: none;
+  border: none;
+}
+
+.filterBlock {
+  display: none;
+}
+
+.filterMenuOpen {
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  justify-content: flex-end;
 }
