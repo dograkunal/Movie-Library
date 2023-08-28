@@ -190,7 +190,7 @@
   .detailDiscription {
     margin: 10px;
     padding: 10px;
-    width: 50%;
+    width: 40%;
     color: black;
     .detailTitle {
       display: flex;
@@ -204,12 +204,12 @@
     h3 {
       font-size: 18px;
       font-weight: 500;
-      margin: 8px auto;
+      margin: 8px 0px;
     }
     h4 {
       font-size: 16px;
       font-weight: 400;
-      margin: 8px auto;
+      margin: 8px 0px;
     }
     p {
       font-size: 14px;
@@ -217,7 +217,8 @@
 
     .genresContainer {
       display: flex;
-      width: 400px;
+      flex-wrap: wrap;
+      width: 50%;
       align-items: center;
       font-weight: 400;
       h4 {
@@ -237,6 +238,30 @@
   padding: 10px 15px;
 }
 
+/* **********M O B I L E********** */
+.mobNav {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.filterMenu {
+  background: none;
+  border: none;
+}
+
+.filterBlock {
+  display: none;
+}
+
+.filterMenuOpen {
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  justify-content: flex-end;
+}
+
 /* **********M A I N  S C R O L L B A R ********** */
 body::-webkit-scrollbar {
   width: 8px;
@@ -253,6 +278,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 /*********** B R E A K P O I N T S ***********/
+
+/* 
+1550px 
+1450px
+1250px
+1050px
+750px
+420px
+*/
 @media screen and (max-width: 1550px) {
   .mainContainer {
     grid-template-columns: 1fr 6fr;
@@ -384,6 +418,11 @@ body::-webkit-scrollbar-thumb {
   .filterBlock {
     display: flex !important;
   }
+  .deatilSection {
+    .detailImage {
+      max-height: 300px;
+    }
+  }
 }
 
 @media screen and (max-width: 420px) {
@@ -402,29 +441,35 @@ body::-webkit-scrollbar-thumb {
       height: 180px;
     }
   }
-}
+  .deatilSection {
+    .detailImage {
+      max-width: 180px;
+      max-height: 220px;
+      margin: 20px 6px;
+    }
 
-/* **********M O B I L E********** */
-
-.mobNav {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-.filterMenu {
-  background: none;
-  border: none;
-}
-
-.filterBlock {
-  display: none;
-}
-
-.filterMenuOpen {
-  position: absolute;
-  top: 18px;
-  left: 15px;
-  justify-content: flex-end;
+    .detailDiscription {
+      h3 {
+        font-size: 15px;
+      }
+      p {
+        font-size: 14px;
+      }
+      .detailTitle {
+        h1 {
+          font-size: 16px;
+          font-weight: 600;
+        }
+        h3 {
+          font-size: 14px;
+        }
+      }
+      .genresContainer {
+        font-size: 15px;
+        h4 {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }
