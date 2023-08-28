@@ -2,7 +2,7 @@
 .mainContainer {
   display: grid;
   grid-template-columns: 1fr 8fr;
-  // max-width: 1500px;
+  width: 99vw;
 }
 
 /* **********F I L T E R  C O N T A I N E R********** */
@@ -375,6 +375,7 @@ body::-webkit-scrollbar-thumb {
     align-items: stretch;
     pointer-events: none;
     visibility: hidden;
+    overflow: auto;
     .sortFilter {
       padding: 10px 0px;
     }
