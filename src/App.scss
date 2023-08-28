@@ -386,6 +386,24 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+@media screen and (max-width: 470px) {
+  .headSection {
+    .searchSection input {
+      font-size: 10px;
+    }
+    h1 {
+      font-size: 15px;
+    }
+  }
+  .CardContainer .CardItem {
+    max-width: 160px;
+    img {
+      width: 160px;
+      height: 220px;
+    }
+  }
+}
+
 /* **********M O B I L E********** */
 
 .mobNav {
